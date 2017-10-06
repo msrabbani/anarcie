@@ -5,6 +5,7 @@ import App from './App'
 import router from './router'
 import firebase from 'firebase'
 import vuefire from 'vuefire'
+import store from '../vuex/store'
 
 Vue.use(vuefire)
 Vue.config.productionTip = false
@@ -26,6 +27,7 @@ Vue.prototype.$db = firebase.database()
 new Vue({
   el: '#app',
   router,
+  store,
   template: '<App/>',
   components: { App }
 })
