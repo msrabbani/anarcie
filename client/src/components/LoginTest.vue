@@ -1,16 +1,18 @@
 <template lang="html">
   <div class="container">
     <form v-if="!one.name" @submit.prevent="start1()">
-      <input v-model="player1.name" type="text" placeholder="Player 1 name">
-      <button type="submit" name="submit">Submit</button>
+      <!-- <input v-model="player1.name" type="text" placeholder="Player 1 name">
+      <button type="submit" name="submit">Submit</button> -->
+      <button @click="assignPlayer1()" type="submit" name="submit">Player-1</button>
     </form>
     <div v-else>
       <p style="color:grey">Player 1 ready..</p>
     </div>
     <br>
     <form v-if="!two.name" @submit.prevent="start2()">
-      <input v-model="player2.name" type="text" placeholder="Player 2 name">
-      <button type="submit" name="submit">Submit</button>
+      <!-- <input v-model="player2.name" type="text" placeholder="Player 2 name">
+      <button type="submit" name="submit">Submit</button> -->
+      <button @click="assignPlayer2()" type="submit" name="submit">Player-2</button>
     </form>
     <div v-else>
       <p style="color:grey">Player 2 ready...</p>
@@ -72,6 +74,38 @@ export default {
         live: 100,
         name: this.player2.name,
         img: this.player2.img,
+        active: true
+      })
+      this.$router.push('/test')
+    },
+    assignPlayer1 () {
+      this.getActivePlayer1({
+        name: localStorage.getItem('anarcie_name'),
+        email: localStorage.getItem('anarcie_email'),
+        id: localStorage.getItem('anarcie_id'),
+        img: localStorage.getItem('anarcie_img')
+      })
+      this.$db.ref(`anarcie/player-one`).set({
+        name: localStorage.getItem('anarcie_name'),
+        email: localStorage.getItem('anarcie_email'),
+        id: localStorage.getItem('anarcie_id'),
+        img: localStorage.getItem('anarcie_img'),
+        active: true
+      })
+      this.$router.push('/test')
+    },
+    assignPlayer2 () {
+      this.getActivePlayer2({
+        name: localStorage.getItem('anarcie_name'),
+        email: localStorage.getItem('anarcie_email'),
+        id: localStorage.getItem('anarcie_id'),
+        img: localStorage.getItem('anarcie_img')
+      })
+      this.$db.ref(`anarcie/player-two`).set({
+        name: localStorage.getItem('anarcie_name'),
+        email: localStorage.getItem('anarcie_email'),
+        id: localStorage.getItem('anarcie_id'),
+        img: localStorage.getItem('anarcie_img'),
         active: true
       })
       this.$router.push('/test')

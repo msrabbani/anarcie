@@ -12,12 +12,12 @@ var app = express();
 var cors = require('cors')
 
 const mongoose = require('mongoose')
-mongoose.connect('mongodb://localhost:27017/anarcie')
-// mongoose.connect(`mongodb://msr:msr1234@cluster0-shard-00-00-g7yx7.mongodb.net:27017,cluster0-shard-00-01-g7yx7.mongodb.net:27017,cluster0-shard-00-02-g7yx7.mongodb.net:27017/anarcie_${process.env.NODE_ENV}?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin`, err=>{
-//   if (err) {
-//     console.log(err);
-//   } console.log(`========================Connect Mongo Anarcie_${process.env.NODE_ENV}=============================`);
-// })
+// mongoose.connect('mongodb://localhost:27017/anarcie')
+mongoose.connect(`mongodb://msr:msr1234@cluster0-shard-00-00-g7yx7.mongodb.net:27017,cluster0-shard-00-01-g7yx7.mongodb.net:27017,cluster0-shard-00-02-g7yx7.mongodb.net:27017/anarcie_${process.env.NODE_ENV}?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin`, err=>{
+  if (err) {
+    console.log(err);
+  } console.log(`========================Connect Mongo Anarcie_${process.env.NODE_ENV}=============================`);
+})
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');

@@ -6,7 +6,7 @@
     Sign in with Facebook
   </fb-signin-button>
 </template>
- 
+
 <script>
 import axios from 'axios'
 export default {
@@ -31,6 +31,12 @@ export default {
       })
       .then(loginResponse => {
         console.log(loginResponse)
+        localStorage.setItem('anarcie_token', loginResponse.data.token)
+        localStorage.setItem('anarcie_id', loginResponse.data.id)
+        localStorage.setItem('anarcie_name', loginResponse.data.name)
+        localStorage.setItem('anarcie_img', loginResponse.data.img)
+        localStorage.setItem('anarcie_email', loginResponse.data.email)
+        this.$router.push('/login')
       })
     },
     onSignInError (error) {
@@ -38,8 +44,8 @@ export default {
     }
   }
 }
-</script> 
- 
+</script>
+
 <style>
 .fb-signin-button {
   /* This is where you control how the button looks. Be creative! */
@@ -49,4 +55,4 @@ export default {
   background-color: #4267b2;
   color: #fff;
 }
-</style> 
+</style>

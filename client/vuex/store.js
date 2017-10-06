@@ -5,14 +5,8 @@ import router from '../src/router/index'
 Vue.use(Vuex)
 
 var state = {
-  activePlayer1: {
-    name: '',
-    img: ''
-  },
-  activePlayer2: {
-    name: '',
-    img: ''
-  }
+  activePlayer1: {},
+  activePlayer2: {}
 }
 
 var mutations = {
