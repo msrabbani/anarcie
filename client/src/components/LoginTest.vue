@@ -1,20 +1,44 @@
 <template lang="html">
   <div class="container">
-    <form @submit.prevent="start1()">
+    <form v-if="!one.name" @submit.prevent="start1()">
       <input v-model="player1.name" type="text" placeholder="Player 1 name">
       <button type="submit" name="submit">Submit</button>
     </form>
+    <div v-else>
+      <p style="color:grey">Player 1 ready..</p>
+    </div>
     <br>
-    <form @submit.prevent="start2()">
+    <form v-if="!two.name" @submit.prevent="start2()">
       <input v-model="player2.name" type="text" placeholder="Player 2 name">
       <button type="submit" name="submit">Submit</button>
     </form>
+    <div v-else>
+      <p style="color:grey">Player 2 ready...</p>
+    </div>
   </div>
 </template>
 
 <script>
 import { mapActions } from 'vuex'
 export default {
+  firebase: function () {
+    return {
+      one: {
+        source: this.$db.ref('anarcie/player-one/'),
+        asObject: true,
+        cancelCallback: function () {},
+        readyCallback: function () {}
+      },
+      two: {
+        source: this.$db.ref('anarcie/player-two/'),
+        asObject: true,
+        cancelCallback: function () {},
+        readyCallback: function () {}
+      }
+      // one: this.$db.ref('anarcie/player-one/'),
+      // two: this.$db.ref(`anarcie/player-two/live`)
+    }
+  },
   data () {
     return {
       player1: {
