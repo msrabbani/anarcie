@@ -99,6 +99,9 @@ export default {
   created () {
     this.$db.ref(`anarcie/player-one/live`).set(100)
     this.$db.ref(`anarcie/player-two/live`).set(100)
+    if (!this.one.name && !this.two.name) {
+      this.$router.push('/login')
+    }
   }
 }
 </script>
