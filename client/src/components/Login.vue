@@ -3,7 +3,9 @@
     <div class="utama">
       <div class="Form">
         <h4>Login here with your Facebook</h4>
-        <div class="button"><div class="outer"><div class="height"><div class="inner"><img style="width:70%" src="https://cdn3.iconfinder.com/data/icons/inside/PNG/256x256/icontexto-inside-facebook.png" alt=""></div></div></div></div>
+        <div v-on:click="play" class="button"><div class="outer"><div class="height"><div class="inner"><img style="width:70%" src="https://cdn3.iconfinder.com/data/icons/inside/PNG/256x256/icontexto-inside-facebook.png" alt=""></div></div></div></div>
+        <!-- <button v-on:click="play" type="button">Click Me to Play Sound</button> -->
+        <audio ref="audioElm" src="http://soundbible.com/mp3/chinese-gong-daniel_simon.mp3"></audio>
       </div>
     </div>
   </div>
@@ -15,6 +17,11 @@ export default {
   data () {
     return {
 
+    }
+  },
+  methods: {
+    play: function (event) {
+      this.$refs.audioElm.play()
     }
   }
 }
